@@ -1,0 +1,130 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+}
+
+.nav {
+    height: 90px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    padding: 0px 15%;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(214, 214, 214);
+}
+
+.logo {
+    font-size: 30px;
+    font-weight: bold;
+    color: #000;
+    text-decoration: none;
+}
+
+.nav-right{
+    display: flex;
+    align-items: baseline;
+}
+
+.nav-right > a {
+    text-decoration: none;
+    color: black;
+    font-size: 1.125rem;
+    padding-left: 30px;
+}
+
+.posts-body {
+    margin: auto;
+    margin-top: 190px;
+    height: 500px;
+    width: 90%;
+    border: 1px solid rgb(214, 214, 214);
+    border-radius: 5px;
+}
+
+.register,
+.login {
+    margin: auto;
+    margin-top: 190px;
+    margin-bottom: 100px;
+    padding: 3rem;
+    width: 375px;
+    border: 1px solid rgb(214, 214, 214);
+    border-radius: 5px;
+}
+
+form {
+    margin-top: 15px;
+}
+
+label {
+    font-size: 1.125rem;
+    font-weight: bold;
+    color: #000;
+    display: inline-block;
+    margin-top: 15px;
+}
+
+input:not([type="submit"]) {
+    width: 100%;
+    height: 40px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid rgb(214, 214, 214);
+    padding: 0px 10px;
+    font-size: 1.125rem;
+    color: #000;
+}
+
+input:focus {
+    outline: none;
+}
+
+input[type="submit"] {
+    border: none;
+    color: black;
+    font-size: 1.125rem;
+}
+
+input[type="submit"] :hover {
+    cursor: pointer;
+}
+
+button {
+    width: 100%;
+    height: 40px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid rgb(214, 214, 214);
+    background-color: #000;
+    color: white;
+    font-size: 1.125rem;
+    font-weight: bold;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.error-text {
+    color: red;
+    font-size: 1rem;
+    margin-top: 5px;
+    margin-bottom: -25px;
+}
+
+.dashboard,
+.home {
+    height: 100vh;
+    width: 90%;
+    margin-top: 140px;
+    margin-left: 5%;
+    border: 1px solid rgb(214, 214, 214);
+    border-radius: 5px;
+}
