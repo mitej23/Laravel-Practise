@@ -41,11 +41,11 @@
                         <div class="d-grid mb-3">
                             <input type="submit" value="Submit" class="btn btn-primary">
                         </div>
-            
-                        <div class="form-group">
+                        
+                        <div class="form-group" style="display: none;">
                             <div class="progress" style=" position:relative; width:100%; border: 1px solid #7F98B2; padding: 1px; border-radius: 3px;">
-                                <div class="bar" style="background-color: #B4F5B4; width:0%; height:25px; border-radius: 3px;"></div >
-                                <div class="percent" style=" position:absolute; display:inline-block; top:3px; left:48%; color: #7F98B2;">0%</div >
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" style="background-color: #3fcb3f!important;" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div> 
+                                <div class="percent" style=" position:absolute; display:inline-block; top:-1px; left:48%; color: #ffffff;">0%</div >
                             </div>
                         </div>
                     </form>
@@ -55,50 +55,34 @@
         
     </div>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
-    <script src="http://malsup.github.com/jquery.form.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>
 
     <script type="text/javascript">
- 
-        function validate(formData, jqForm, options) {
-            var form = jqForm[0];
-            if (!form.file.value) {
-                alert('File not found');
-                return false;
-            }
-        }
-     
-        (function() {
-     
-        var bar = $('.bar');
-        var percent = $('.percent');
-        var status = $('#status');
-     
-        $('form').ajaxForm({
-            beforeSubmit: validate,
-            beforeSend: function() {
-                status.empty();
-                var percentVal = '0%';
-                var posterValue = $('input[name=file]').fieldValue();
-                bar.width(percentVal)
-                percent.html(percentVal);
-            },
-            uploadProgress: function(event, position, total, percentComplete) {
-                var percentVal = percentComplete + '%';
-                bar.width(percentVal)
-                percent.html(percentVal);
-            },
-            success: function() {
-                var percentVal = 'Wait, Saving';
-                bar.width(percentVal)
-                percent.html(percentVal);
-            },
-            complete: function(xhr) {
-                status.html(xhr.responseText);
-                alert('Uploaded Successfully');
-                window.location.href = "/file-upload";
-            }
+        $(function () {
+            $(document).ready(function () {
+                $('#fileUploadForm').ajaxForm({
+                    beforeSend: function () {
+                        var percentage = '0';
+                        console.log("beforeSend");
+                        $('#fileUploadForm > div:nth-child(5)').show();
+                    },
+                    uploadProgress: function (event, position, total, percentComplete) {
+                        console.log("uploadProgress");
+                        console.log(percentComplete);
+                        var percentage = percentComplete;
+                        $('#fileUploadForm > div:nth-child(5) > div > div.progress-bar.progress-bar-striped.progress-bar-animated.bg-danger').width(`${percentComplete}%`);
+                        $('#fileUploadForm > div:nth-child(5) > div > div.percent').html(`${percentComplete}%`);
+                    },
+                    complete: function (xhr) {
+                        console.log('File has uploaded');
+                        $('#fileUploadForm > div:nth-child(5) > div > div.progress-bar.progress-bar-striped.progress-bar-animated.bg-danger').width(`0%`);
+                        $('#fileUploadForm > div:nth-child(5) > div > div.percent').html(`0%`);
+                        $('#fileUploadForm > div:nth-child(5)').hide();
+                        //redirect to post page
+                        window.location.href = "{{route('dashboard')}}";
+                    }
+                });
+            });
         });
-         
-        })();
     </script>
 @endsection
