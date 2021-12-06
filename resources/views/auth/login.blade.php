@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="login">
-        <h1>Login</h1>
+        <h2>Login</h2>
         @if (session('status'))
             <div class="error-text">
                 {{ session('status') }}

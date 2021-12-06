@@ -9,10 +9,10 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostController;
 
 Route::get('/', function () {
-    return view('home');
+    return "home";
 })->name('home');
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/library', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::post('/logout',[LogoutController::class,'store'])->name('logout');
 
@@ -24,7 +24,7 @@ Route::post("/register",[RegisterController::class,"store"]);
 
 
 Route::get('/posts',[PostController::class,'index'])->name('posts');
-Route::post('/posts',[PostController::class,'store'])->name('posts');
+Route::post('/posts',[PostController::class,'store']);
 
 //create route for get donwload file with params as path
-Route::get('/download/{name}',[PostController::class,'download'])->name('download');
+Route::get('/download/{name}',[DashboardController::class,'download'])->name('download');

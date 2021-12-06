@@ -20,4 +20,8 @@ class DashboardController extends Controller
             'posts' => $posts
         ]);
     }
+    public function download($name)
+    {   
+        return response()->download(storage_path('app/public/files/'.$name));
+    }
 }
