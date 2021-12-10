@@ -9,7 +9,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostController;
 
 Route::get('/', function () {
-    return "home";
+    return view('home');
 })->name('home');
 
 Route::get('/library', [DashboardController::class, 'index'])->name('dashboard');

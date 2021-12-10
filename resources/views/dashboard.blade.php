@@ -8,10 +8,17 @@
                 <div class="dashboard-add-post">
                     <a href="{{route('posts')}}">
                         <p>Add</p>
-                        <x-ri-add-fill style="height:20px;"/>
                     </a>
                 </div>
-                <input type="text" class="dashboard-search-bar" placeholder="Search">
+                <div class="dashboard-search">
+                    <form action="{{route('dashboard')}}" method="get" style="display: flex;">
+                        <input type="text" name="search" class="dashboard-search-bar" placeholder="Search" value="{{old('search')}}">
+                        <button type="submit" class="dashboard-add-post" style="margin-top:0px;margin-bottom:0px;width:max-content;">
+                            <p>Search</p>  
+                        </button>
+                    </form>
+                </div>
+               
             </div>
         </div>
         <div class="posts-container">
@@ -28,10 +35,12 @@
                             <div class="created_by">
                                 <p>By: {{$post->user->name}}</p>
                             </div>
+                            <a href="{{route('download', basename($post->path))}}" >Download</a>
                         </div>
-                        <div class="download-btn">
-                            <a href="{{route('download', basename($post->path))}}" class="btn btn-primary"><x-heroicon-o-download style="height: 25px;widht:25px;"/></a>
-                        </div>
+                        
+                        {{-- <div class="download-btn">
+                           
+                        </div> --}}
                     </div>
                 @endforeach
             @else
