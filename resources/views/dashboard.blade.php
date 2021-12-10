@@ -5,11 +5,14 @@
         <div class="dashboard-title-bar">
             <p class="dashboard-title">Library</p>
             <div class="dashboard-features-container">
-                <div class="dashboard-add-post">
-                    <a href="{{route('posts')}}">
-                        <p>Add</p>
-                    </a>
-                </div>
+
+                @if(Auth::user()->type  == 'ADMIN' || Auth::user()->type  == 'STAFF')
+                    <div class="dashboard-add-post">
+                        <a href="{{route('posts')}}">
+                            <p>Add</p>
+                        </a>
+                    </div>
+                @endif
                 <div class="dashboard-search">
                     <form action="{{route('dashboard')}}" method="get" style="display: flex;">
                         <input type="text" name="search" class="dashboard-search-bar" placeholder="Search" value="{{old('search')}}">

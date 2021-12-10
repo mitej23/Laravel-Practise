@@ -1,0 +1,37 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+.admin-dashboard {
+    width: 100vw;
+    height: 100vh;
+    background-color: #fff;
+}
+
+.side-bar {
+    width: 20%;
+    height: 100%;
+    background-color: #ccc;
+    float: left;
+    border-right: 1px solid #ccc;
+    padding-left: 20px;
+}
+
+.admin-content {
+    width: 80%;
+    height: 100%;
+    background-color: #fff;
+    float: right;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+}
+
+.menu > a {
+    color: white;
+    text-decoration: none;
+}

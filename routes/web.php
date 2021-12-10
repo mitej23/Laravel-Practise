@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\AdminController;
 
 Route::get('/', function () {
     return view('home');
@@ -14,6 +15,7 @@ Route::get('/', function () {
 
 Route::get('/library', [DashboardController::class, 'index'])->name('dashboard');
 
+Route::get('/logout',[LogoutController::class,'store'])->name('logout');
 Route::post('/logout',[LogoutController::class,'store'])->name('logout');
 
 Route::get('/login',[LoginController::class,'index'])->name('login');
@@ -28,3 +30,7 @@ Route::post('/posts',[PostController::class,'store']);
 
 //create route for get donwload file with params as path
 Route::get('/download/{name}',[DashboardController::class,'download'])->name('download');
+
+Route::get('/admin',[AdminController::class,'index'])->name('admin');
+Route::get('/admin/users',[AdminController::class,'users'])->name('admin.users');
+Route::get('/admin/chat',[AdminController::class,'chat'])->name('admin.chat');
