@@ -51,6 +51,88 @@
                     <h3>No posts yet</h3>
                 </div>
             @endif
+        </div>    
+    </div>
+    <div class="chat-box" style="display: block">
+        <div class="chat-close">
+        </div>
+        <div class="chats">
+            <div class="insert-here">
+
+            </div>
+        </div>
+        <div style="display: flex;">
+            <input type="text" name="" class="chat-box-input" placeholder="type.." >
+            <button type="submit" class="chatbox-send" style="margin-top:0px;margin-bottom:0px;width:max-content;">
+                <p>Send</p>  
+            </button>
         </div>
     </div>
+
+    <div class="chat-icon" style="display: none"></div>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>
+
+    <script type="text/javascript">
+
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            let chatBox = document.querySelector('.chat-box');
+            let chatClose = document.querySelector('.chat-close');
+            let chatIcon = document.querySelector('.chat-icon');
+
+            chatIcon.addEventListener('click', function() {
+                chatIcon.style.display = 'none';
+                chatBox.style.display = 'block';
+            });
+
+            chatClose.addEventListener('click', function() {
+                chatIcon.style.display = 'block';
+                chatBox.style.display = 'none';
+            });
+
+
+            $(document).on('click' , '.chatbox-send',function(e){
+                e.preventDefault();
+                var data = $('.chat-box-input').val();
+
+                if(data == ''){
+                    console.log('empty');
+                    return false;
+                }
+
+                $('.insert-here').append(`<div id="question">
+                         <p>${data}</p>
+                     </div>`
+                );
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                $.ajax({
+                    type: "POST",
+                    url: "/admin",
+                    data: {
+                        '_token': $('input[name=_token]').val(),
+                        'data': data
+                    },
+                    dataType: "json",
+                    success: function(data){
+                        $('.insert-here').append(`<div id="answer">
+                            <p>${data.answer}</p>
+                        </div>`
+                        );
+                        $('.chat-box-input').val('');
+                    }
+
+                })
+            });
+
+        });
+    </script>
 @endsection

@@ -32,5 +32,7 @@ Route::post('/posts',[PostController::class,'store']);
 Route::get('/download/{name}',[DashboardController::class,'download'])->name('download');
 
 Route::get('/admin',[AdminController::class,'index'])->name('admin');
+Route::post('/admin',[AdminController::class,'chatbox'])->name('admin');
+
 Route::get('/admin/users',[AdminController::class,'users'])->name('admin.users');
 Route::get('/admin/chat',[AdminController::class,'chat'])->name('admin.chat');
