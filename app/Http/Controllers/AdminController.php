@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Post;
 use App\Models\Qna;
 
 
@@ -45,5 +46,40 @@ class AdminController extends Controller
     public function chat()
     {
         return view('admin.chat');
+    }
+    
+    public function approvals()
+    {
+        $posts = Post::where('approval', 'PENDING')->get();
+
+        return view('admin.approvals',[
+            'posts' => $posts
+        ]);
+    }
+
+    public function approve($id)
+    {
+        $post = Post::find($id);
+        $post->approval = 'APPROVED';
+        $post->save();
+
+        $posts = Post::where('approval', 'PENDING')->get();
+
+        return view('admin.approvals',[
+            'posts' => $posts
+        ]);
+    }
+
+    public function delete($id)
+    {
+        $post = Post::find($id);
+        $post->delete();
+
+        $posts = Post::where('approval', 'PENDING')->get();
+
+        return view('admin.approvals',[
+            'posts' => $posts
+        ]);
+        
     }
 }

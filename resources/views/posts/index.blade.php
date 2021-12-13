@@ -54,6 +54,7 @@
                         //redirect to post page
                         window.location.href = "{{route('dashboard')}}";
                     }
+
                 });
             });
         });

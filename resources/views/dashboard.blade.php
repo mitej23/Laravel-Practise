@@ -5,14 +5,11 @@
         <div class="dashboard-title-bar">
             <p class="dashboard-title">Library</p>
             <div class="dashboard-features-container">
-
-                @if(Auth::user()->type  == 'ADMIN' || Auth::user()->type  == 'STAFF')
-                    <div class="dashboard-add-post">
-                        <a href="{{route('posts')}}">
-                            <p>Add</p>
-                        </a>
-                    </div>
-                @endif
+                <div class="dashboard-add-post">
+                    <a href="{{route('posts')}}">
+                        <p>Add</p>
+                    </a>
+                </div>
                 <div class="dashboard-search">
                     <form action="{{route('dashboard')}}" method="get" style="display: flex;">
                         <input type="text" name="search" class="dashboard-search-bar" placeholder="Search" value="{{old('search')}}">
@@ -53,7 +50,7 @@
             @endif
         </div>    
     </div>
-    <div class="chat-box" style="display: block">
+    <div class="chat-box" style="display: none">
         <div class="chat-close">
         </div>
         <div class="chats">
@@ -69,7 +66,7 @@
         </div>
     </div>
 
-    <div class="chat-icon" style="display: none"></div>
+    <div class="chat-icon" ></div>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>

@@ -23,9 +23,10 @@ class DashboardController extends Controller
                 $posts = Post::paginate(10);
             } 
 
-            $posts = Post::where('name', 'like', '%'.$request->search.'%')->paginate(10);
+            $posts = Post::where('approval', 'APPROVED')->where('name', 'like', '%'.$request->search.'%')->paginate(10);
+            
         } else {
-            $posts = Post::paginate(10);
+            $posts = Post::where('approval', 'APPROVED')->paginate(10);
         }
 
         return view('dashboard',[

@@ -16,6 +16,7 @@
             <div class="menu">
                 <a href="{{route('admin.users')}}">Users</a>
                 <a href="{{route('admin.chat')}}">Chats</a>
+                <a href="{{route('admin.approval')}}">Approvals</a>
                 <a href="{{route('logout')}}">Logout</a>
             </div>
         </div>

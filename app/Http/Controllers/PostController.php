@@ -17,10 +17,6 @@ class PostController extends Controller
 
     public function index()
     {  
-        if(Auth::user()->type == 'STUDENT'){
-            return redirect('library');
-        }
-
         return view('posts.index');
     }
 
@@ -36,13 +32,19 @@ class PostController extends Controller
         $name = time().'.'.request()->file->getClientOriginalExtension();
         $path = request()->file->storeAs('public/files', $name);
         $name = $request->name;
-        
-        // $path = $request->file('file')->store('public/files');
 
-        $request->user()->posts()->create([
-            'name' => $name,
-            'path' => $path,
-        ]);
+        $post = new Post;
+        $post->name = $name;
+        $post->path = $path;
+        $post->user_id = Auth::user()->id;
+
+        if(Auth::user()->type == 'STUDENT'){
+            $post->approval = 'PENDING'; 
+        }
+        
+        $post->approval = 'APPROVED';
+        $post->save();
+        
 
         return redirect('library')->with('status', 'File Has been uploaded successfully in laravel 8');
     

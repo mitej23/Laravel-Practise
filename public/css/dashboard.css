@@ -24,6 +24,7 @@
     height: 100%;
     background-color: #fff;
     float: right;
+    padding: 4rem;
 }
 
 .menu {
@@ -36,4 +37,42 @@
     text-decoration: none;
 }
 
+/* posts */
 
+.posts-container {
+    margin-top: 2rem;
+    width: 100%;
+    height: max-content;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.post {
+    width: 48%;
+    padding: 0.75rem;
+    border: 1.5px solid rgb(214, 214, 214);
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.post-data > div {
+    margin-bottom: 5px;
+}
+
+.post-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #000;
+    letter-spacing: 0.25px;
+}
+
+.download-btn > a {
+    text-decoration: none;
+    color: #000;
+    font-size: 1.125rem;
+    margin-left: 30px;
+}

@@ -36,3 +36,8 @@ Route::post('/admin',[AdminController::class,'chatbox'])->name('admin');
 
 Route::get('/admin/users',[AdminController::class,'users'])->name('admin.users');
 Route::get('/admin/chat',[AdminController::class,'chat'])->name('admin.chat');
+Route::get('/admin/approvals',[AdminController::class,'approvals'])->name('admin.approval');
+Route::get('/approve/{id}',[AdminController::class,'approve'])->name('admin.approve');
+Route::get('/delete/{id}',[AdminController::class,'delete'])->name('admin.delete');
+
+
