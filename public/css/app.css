@@ -276,7 +276,7 @@ button:hover {
 }
 
 .chat-box {
-    position: absolute;
+    position: fixed;
     bottom: 30px;
     right: 30px;
     height: 400px;

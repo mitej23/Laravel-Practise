@@ -40,11 +40,11 @@ class PostController extends Controller
 
         if(Auth::user()->type == 'STUDENT'){
             $post->approval = 'PENDING'; 
+        }else{
+            $post->approval = 'APPROVED';
         }
         
-        $post->approval = 'APPROVED';
         $post->save();
-        
 
         return redirect('library')->with('status', 'File Has been uploaded successfully in laravel 8');
     
