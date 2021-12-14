@@ -265,7 +265,7 @@ button:hover {
     width: 60px;
     border: 1px solid rgb(67 67 255);
     border-radius: 30px;
-    position: absolute;
+    position: fixed;
     right: 50px;
     bottom: 50px;
     background: blue;
