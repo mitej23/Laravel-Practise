@@ -17,7 +17,10 @@ class PostController extends Controller
 
     public function index()
     {  
-        return view('posts.index');
+
+        $alltags = Post::existingTags();
+        // return view('posts.index');
+        return view('posts.index', compact('alltags'));
     }
 
     public function store(Request $request)
@@ -26,7 +29,12 @@ class PostController extends Controller
         $this->validate($request, [
             'name' => 'required|max:255',
             'file' => 'required|file|mimes:pdf,word',
+            'tags' => 'required|array',
         ]);
+
+
+        // log request data
+        //dd($request->all());
 
 
         $name = time().'.'.request()->file->getClientOriginalExtension();
@@ -37,13 +45,17 @@ class PostController extends Controller
         $post->name = $name;
         $post->path = $path;
         $post->user_id = Auth::user()->id;
+        
 
         if(Auth::user()->type == 'STUDENT'){
             $post->approval = 'PENDING'; 
         }else{
             $post->approval = 'APPROVED';
         }
+        $post->save();
         
+        $post->retag($request->tags);
+
         $post->save();
 
         return redirect('library')->with('status', 'File Has been uploaded successfully in laravel 8');

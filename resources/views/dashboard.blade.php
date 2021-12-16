@@ -36,6 +36,15 @@
                                 <p>By: {{$post->user->name}}</p>
                             </div>
                             <a href="{{route('download', basename($post->path))}}" >Download</a>
+                            <div class="tag-holder">
+                                @foreach($post->tags as $tag)
+                                    <div class="tag">
+                                        <p>{{ $tag->name }}</p>
+                                    </div>
+                                    
+                                @endforeach
+                            </div>
+                            
                         </div>
                         
                         {{-- <div class="download-btn">
