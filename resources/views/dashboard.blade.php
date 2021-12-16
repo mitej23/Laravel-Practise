@@ -10,16 +10,22 @@
                         <p>Add</p>
                     </a>
                 </div>
-                <div class="dashboard-search">
-                    <form action="{{route('dashboard')}}" method="get" style="display: flex;">
-                        <input type="text" name="search" class="dashboard-search-bar" placeholder="Search" value="{{old('search')}}">
-                        <button type="submit" class="dashboard-add-post" style="margin-top:0px;margin-bottom:0px;width:max-content;">
-                            <p>Search</p>  
-                        </button>
-                    </form>
-                </div>
+                
                
             </div>
+        </div>
+        <div class="searh-filter-container">
+            <form action="{{route('dashboard')}}" method="get" style="display: flex;margin-bottom:20px">
+                <input type="text" name="search" class="dashboard-search-bar" placeholder="Search" value="{{old('search')}}">
+                <select class="form-control tags-filter" multiple="multiple" name="tags[]">
+                    @foreach ($alltags as $tag)
+                        <option>{{$tag->name}}</option>
+                    @endforeach
+                </select>
+                <button type="submit" class="dashboard-add-post" style="margin-top:0px;margin-bottom:0px;width:max-content;">
+                    <p>Search</p>  
+                </button>
+            </form>
         </div>
         <div class="posts-container">
             @if($posts->count())
@@ -40,8 +46,7 @@
                                 @foreach($post->tags as $tag)
                                     <div class="tag">
                                         <p>{{ $tag->name }}</p>
-                                    </div>
-                                    
+                                    </div>     
                                 @endforeach
                             </div>
                             
@@ -77,10 +82,27 @@
 
     <div class="chat-icon" ></div>
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>
+    {{-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script> --}}
 
     <script type="text/javascript">
+
+
+
+        $(function () {
+            $(document).ready(function () {
+
+                $(".tags-filter").select2({
+                    allowClear: true,
+                    placeholder: "Filter by tags",
+                    tags: true,
+                    width: '30%',
+                    display: "inline-block",
+                    maximumSelectionLength: 4,
+                    
+                });
+            });
+        });
 
 
 
@@ -98,6 +120,9 @@
                 chatIcon.style.display = 'block';
                 chatBox.style.display = 'none';
             });
+
+            //tag-input
+            
 
 
             $(document).on('click' , '.chatbox-send',function(e){

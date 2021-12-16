@@ -157,6 +157,7 @@ button:hover {
     border: 1px solid rgb(67, 67, 255);
     border-radius: 4px;
     background-color: rgb(67, 67, 255);
+    margin-left: 15px;
 }
 
 .dashboard-add-post:hover {
@@ -179,7 +180,6 @@ button:hover {
     padding: 0px 10px;
     font-size: 1.125rem;
     color: #000;
-    margin-left: 15px;
     margin-right: 15px;
 }
 
@@ -364,3 +364,82 @@ button:hover {
     border-radius: 11px;
     align-items: center;
 }
+
+.select2-container {
+    min-width: 125px !important;
+}
+
+.select2-container--default .select2-selection--multiple {
+    border: 1px solid rgb(214, 214, 214) !important;
+}
+
+.select2-container--default
+    .select2-selection--multiple.select2-selection--clearable {
+    padding-left: 5px !important;
+}
+
+.select2-container--default .select2-selection--multiple {
+    padding-left: 5px !important;
+}
+
+.select2-container {
+    font-size: 1.125rem !important;
+}
+
+.select2-container--default.select2-container--focus
+    .select2-selection--multiple {
+    padding-left: 5px !important;
+}
+
+.select2-container--default .select2-search--inline .select2-search__field {
+    height: 27px !important;
+    padding-top: 5px !important;
+}
+
+.select2-container--default.select2-container--focus
+    .select2-selection--multiple {
+    border: 1px solid rgb(214, 214, 214) !important;
+}
+
+.select2-container--default
+    .select2-selection--multiple
+    .select2-selection__clear {
+    margin-top: 9px !important;
+}
+
+/* .select2-container--default .select2-selection--multiple {
+    min-height: 40px !important;
+}
+
+.select2-container--default .select2-search--inline .select2-search__field {
+    margin-top: 0px !important;
+    height: 34px !important;
+}
+
+.select2-container--default .select2-search--inline .select2-search__field {
+    font-size: 1.125rem !important;
+    padding-top: 10px !important;
+}
+
+.select2-container--default
+    .select2-selection--multiple
+    .select2-selection__choice {
+    margin-top: 0px !important;
+} */
+
+/* font-size: 1.125rem;
+    padding-top: 5px; */
+
+/*     //     width: 100%;
+    // height: 40px;
+    // border-radius: 5px;
+    // border: 1px solid rgb(214, 214, 214);
+    // padding: 0px 10px;
+    // font-size: 1.125rem;
+    // color: #000; */
+
+/* 
+        fontsize (global) 1.125rem
+        text height: 27px
+    
+    */
