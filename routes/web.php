@@ -35,8 +35,14 @@ Route::get('/admin',[AdminController::class,'index'])->name('admin');
 Route::post('/admin',[AdminController::class,'chatbox'])->name('admin');
 
 Route::get('/admin/users',[AdminController::class,'users'])->name('admin.users');
-Route::get('/admin/chat',[AdminController::class,'chat'])->name('admin.chat');
+Route::get('/admin/qna',[AdminController::class,'qna'])->name('admin.qna');
 Route::get('/admin/approvals',[AdminController::class,'approvals'])->name('admin.approval');
+
+Route::post('/admin/qna/update',[AdminController::class,'updateQuestion'])->name('admin.qna.update');
+Route::get('/admin/qna/delete/{id}',[AdminController::class,'deleteQuestion'])->name('admin.qna.delete');
+Route::post('/admin/qna/add',[AdminController::class,'addQuestion'])->name('admin.qna.add');
+Route::post('/admin/qna/import',[AdminController::class,'addQuestionUsingFile'])->name('admin.qna.import');
+
 Route::get('/approve/{id}',[AdminController::class,'approve'])->name('admin.approve');
 Route::get('/delete/{id}',[AdminController::class,'delete'])->name('admin.delete');
 

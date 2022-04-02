@@ -28,7 +28,6 @@ class RegisterController extends Controller
             'username' => 'required',
             'email' => 'required|email',
             'password' => 'required|min:6|confirmed',
-
         ]);
 
     
@@ -37,6 +36,7 @@ class RegisterController extends Controller
             'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'type' => 'STUDENT',
         ]);
 
         auth()->attempt($request->only('email', 'password'));

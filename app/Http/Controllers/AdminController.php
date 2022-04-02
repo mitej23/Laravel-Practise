@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Qna;
+use App\Models\User;
 
 
 class AdminController extends Controller
@@ -40,12 +41,76 @@ class AdminController extends Controller
 
     public function users()
     {
-        return view('admin.users');
+        // get all users name and email and number of posts
+        $users = User::all('name','email','type')->where('type', '!=', 'ADMIN');
+        return view('admin.users',[
+            'users' => $users
+        ]);
     }
 
-    public function chat()
+    public function qna()
+    {   
+        // get all qna
+        $qnas = Qna::all();
+        return view('admin.qna',[
+            'qnas' => $qnas
+        ]);
+    }
+
+    public function updateQuestion(Request $request)
     {
-        return view('admin.chat');
+        // find the question and update the answer
+        $qna = Qna::where('question', $request->question)->first();
+        $qna->answer = $request->answer;
+        $qna->save();
+
+        return redirect('/admin/qna')->with('status', 'Question has been updated successfully');
+    }
+
+    public function deleteQuestion($id)
+    {
+        // get qna by id
+        $qna = Qna::find($id);
+
+        // delete qna
+        $qna->delete();
+
+        return redirect()->route('admin.qna');
+    }
+
+    public function addQuestion(Request $request)
+    {
+        // create new qna
+        $qna = new Qna;
+        $qna->question = $request->question;
+        $qna->answer = $request->answer;
+        $qna->save();
+
+        return redirect()->route('admin.qna');
+    }
+
+    public function addQuestionUsingFile(Request $request)
+    {
+        $file = $request->file('file');
+        if($file->getClientOriginalExtension() != 'csv'){
+            return redirect()->route('admin.qna')->with('status', 'Please upload a csv file');
+        }
+
+        // read the file 
+        $file = fopen($file, 'r');
+        $i = 0;
+        while(($line = fgetcsv($file)) !== false){
+            if($i == 0){
+                $i++;
+                continue;
+            }
+            $qna = new Qna;
+            $qna->question = $line[0];
+            $qna->answer = $line[1];
+            $qna->save();
+        }
+
+        return redirect()->route('admin.qna')->with('status', 'Questions have been added successfully');
     }
     
     public function approvals()
