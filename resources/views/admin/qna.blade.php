@@ -19,12 +19,12 @@
             </tr>
             @foreach ($qnas as $qna)
                 <tr>
-                    <td class="question">{{$qna->question}}</td>
+                    <td class="question" contenteditable="false">{{$qna->question}}</td>
                     <td class="answer" contenteditable="false">
                         {{$qna->answer}}
                     </td>
                     <td>
-                        <button class="btn" onclick="editAns(this)">Edit</button>
+                        <button class="btn" onclick="editAns(this,{{$qna->id}})">Edit</button>
                         <a class="btn" href="{{route('admin.qna.delete', $qna->id)}}">Delete</a>
                     </td>
                 </tr>
@@ -43,7 +43,7 @@
                         <div class="form-group">
                             <label class="modal-label" for="question">Question</label>
                             <br />
-                            <input type="text" name="question" class="modal-input" required>
+                            <input type="text" name="question" class="modal-input" required />
                         </div>
                         <div class="form-group">
                             <label class="modal-label" for="answer">Answer</label>
@@ -85,18 +85,23 @@
 
     <script type="text/javascript">
 
-        function editAns(e){
-            var ans = e.parentNode.parentNode.querySelector('.answer');
+        function editAns(e,id){
+            let ques = e.parentNode.parentNode.querySelector('.question');
+            let ans = e.parentNode.parentNode.querySelector('.answer');
             if(ans.getAttribute('contenteditable') == 'false'){
+                ques.setAttribute('contenteditable', 'true');
                 ans.setAttribute('contenteditable', 'true');
+                ques.focus();
                 ans.focus();
                 e.innerHTML = 'Save';
             }else{
 
-                var question = e.parentNode.parentNode.querySelector('.question').innerHTML;
+                var question = ques.innerHTML;
                 var answer = ans.innerHTML;
 
+                ques.setAttribute('contenteditable', 'false');
                 ans.setAttribute('contenteditable', 'false');
+                ques.blur();
                 ans.blur();
                 e.innerHTML = 'Edit';
 
@@ -112,6 +117,7 @@
                         },
                         credentials: "same-origin",
                         body: JSON.stringify({
+                            id: id,
                             question: question,
                             answer: answer
                         })
