@@ -101,15 +101,16 @@ class AdminController extends Controller
         // remove &nbsp
         $user->name = str_replace('&nbsp;', '', $request->name);
         $user->username = str_replace('&nbsp;', '', $request->name);
-        $user->email = $request->email;
+        $email = $request->email;
+        $email = str_replace('&nbsp;', '', $email);
+        $email = str_replace(' ', '', $email);
+        $user->email = $email;
         $user->type = $request->type;
         $user->save();
 
-        $result = [
-            'status' => 'success',
-            'message' => 'User has been updated successfully'
-        ];
-        return response()->json($result);
+        return view('admin.users',[
+            'users' => User::all('id','name','email','type')->where('type', '!=', 'ADMIN')
+        ]);
     }
 
     public function deleteUser(Request $request){
@@ -129,8 +130,9 @@ class AdminController extends Controller
 
     public function updateQuestion(Request $request){
         $qna = Qna::find($request->id);
-        $qna->question = $request->question;
-        $qna->answer = $request->answer;
+        //remove &nbsp
+        $qna->question = str_replace('&nbsp;', '', $request->question);
+        $qna->answer = str_replace('&nbsp;', '', $request->answer);
         $qna->save();
         return redirect()->route('admin.qna')->with('status', 'Question has been updated successfully');
     }
