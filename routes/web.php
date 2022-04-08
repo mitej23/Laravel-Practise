@@ -35,6 +35,12 @@ Route::get('/admin',[AdminController::class,'index'])->name('admin');
 Route::post('/admin',[AdminController::class,'chatbox'])->name('admin');
 
 Route::get('/admin/users',[AdminController::class,'users'])->name('admin.users');
+
+Route::post('/admin/users',[AdminController::class,'addUsersUsingFile'])->name('admin.users.importUsingFile');
+Route::post('/admin/users/add',[AdminController::class,'addUser'])->name('admin.users.add');
+Route::get('/admin/users/delete/{id}',[AdminController::class,'deleteUser'])->name('admin.users.delete');
+Route::put('/admin/users/{id}',[AdminController::class,'updateUser'])->name('admin.users.update');
+
 Route::get('/admin/qna',[AdminController::class,'qna'])->name('admin.qna');
 Route::get('/admin/approvals',[AdminController::class,'approvals'])->name('admin.approval');
 

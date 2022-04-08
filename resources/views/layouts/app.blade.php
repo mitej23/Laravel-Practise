@@ -21,17 +21,19 @@
 </head>
 <body>
     <div class="nav">
-        <div class="logo">
-            <a href="{{route("home")}}" style="text-decoration: none;color: black;">
-                NM Library
-            </a>            
-        </div>
+        <a href="{{route("home")}}" style="text-decoration: none;color: black;" class="logo">
+            <img src="{{ asset('images/nm_logo.png') }}" alt="tag" id="logo" height="60" width="60"/>
+            <div class="logo-text-container">
+                <p>NM College</p>
+                <p>Library</p>
+            </div>
+        </a>            
         <div class="nav-right">
             @auth
                 <a style="margin-right: 30px">{{auth()->user()->name}}</a>    
                 <form action="{{route('logout')}}" method="post">
                     @csrf
-                    <input type="submit" value="logout"></button>
+                    <input id="nav-right-text" type="submit" value="logout"></button>
                 </form>
             @endauth
 

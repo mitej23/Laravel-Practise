@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Post;
 use App\Models\Qna;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 
 class AdminController extends Controller
@@ -42,10 +44,78 @@ class AdminController extends Controller
     public function users()
     {
         // get all users name and email and number of posts
-        $users = User::all('name','email','type')->where('type', '!=', 'ADMIN');
+        $users = User::all('id','name','email','type')->where('type', '!=', 'ADMIN');
         return view('admin.users',[
             'users' => $users
         ]);
+    }
+
+    public function addUser(Request $request)
+    {
+        // create new user
+        $user = new User;
+        $user->name = $request->name;
+        $user->username = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->type = $request->type;
+        $user->save();
+
+        return view('admin.users',[
+            'users' => User::all('id','name','email','type')->where('type', '!=', 'ADMIN')
+        ]);
+    }
+
+    public function addUsersUsingFile(Request $request){
+        $file = $request->file('file');
+        if($file->getClientOriginalExtension() != 'csv'){
+            return redirect()->route('admin.users')->with('status', 'Please upload a csv file');
+        }
+
+        // read the file 
+        $file = fopen($file, 'r');
+        $i = 0;
+        while(($line = fgetcsv($file)) !== false){
+            if($i == 0){
+                $i++;
+                continue;
+            }
+            $user = new User();
+            $user->name = $line[0];
+            $user->username = $line[0];
+            $user->email = $line[1];
+            $user->password = Hash::make($line[2]);
+            $user->type = $line[3];
+            $user->save();
+            
+        }
+
+        return redirect()->route('admin.users')->with('status', 'Users have been added successfully');
+    }
+
+    public function updateUser(Request $request){
+
+        // validate the request if error return to users page
+
+        $user = User::find($request->id);
+        // remove &nbsp
+        $user->name = str_replace('&nbsp;', '', $request->name);
+        $user->username = str_replace('&nbsp;', '', $request->name);
+        $user->email = $request->email;
+        $user->type = $request->type;
+        $user->save();
+
+        $result = [
+            'status' => 'success',
+            'message' => 'User has been updated successfully'
+        ];
+        return response()->json($result);
+    }
+
+    public function deleteUser(Request $request){
+        $user = User::find($request->id);
+        $user->delete();
+        return redirect()->route('admin.users')->with('status', 'User has been deleted successfully');
     }
 
     public function qna()
@@ -57,14 +127,12 @@ class AdminController extends Controller
         ]);
     }
 
-    public function updateQuestion(Request $request)
-    {
-        // find the question and update the answer
-        $qna = Qna::where('question', $request->question)->first();
+    public function updateQuestion(Request $request){
+        $qna = Qna::find($request->id);
+        $qna->question = $request->question;
         $qna->answer = $request->answer;
         $qna->save();
-
-        return redirect('/admin/qna')->with('status', 'Question has been updated successfully');
+        return redirect()->route('admin.qna')->with('status', 'Question has been updated successfully');
     }
 
     public function deleteQuestion($id)

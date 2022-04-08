@@ -12,13 +12,13 @@
     <div class="admin-dashboard">
         <div class="side-bar">
             <div class="logo">
-                <h2>Dashboard</h2>
+                <img src="{{ asset('images/logo.jpg') }}" id="logo"/> 
             </div>
             <div class="menu">
-                <a href="{{route('admin.users')}}">Users</a>
-                <a href="{{route('admin.qna')}}">Q&A</a>
-                <a href="{{route('admin.approval')}}">Approvals</a>
-                <a href="{{route('logout')}}">Logout</a>
+                <a href="{{route('admin.users')}}" class="{{ Request::routeIs('admin.users') ? 'active' : '' }}">Users</a>
+                <a href="{{route('admin.qna')}}" class="{{ Request::routeIs('admin.qna') ? 'active' : '' }}">Q&A</a>
+                <a href="{{route('admin.approval')}}" class="{{ Request::routeIs('admin.approval') ? 'active' : '' }}">Approvals</a>
+                <a href="{{route('logout')}}" >Logout</a>
             </div>
         </div>
         @yield('dashboard-content')

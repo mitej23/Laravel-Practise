@@ -16,13 +16,25 @@
     padding: 0px 15%;
     justify-content: space-between;
     border-bottom: 1px solid rgb(214, 214, 214);
+    background: #00144d;
 }
 
 .logo {
-    font-size: 30px;
+    display: flex;
     font-weight: bold;
     color: #000;
     text-decoration: none;
+    align-content: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.logo-text-container {
+    font-size: 1.25rem;
+    white-space: nowrap;
+    margin-left: 10px;
+    color: white;
 }
 
 .nav-right {
@@ -32,9 +44,13 @@
 
 .nav-right > a {
     text-decoration: none;
-    color: black;
+    color: white;
     font-size: 1.125rem;
     padding-left: 30px;
+}
+
+#nav-right-text {
+    color: white;
 }
 
 .posts-body {

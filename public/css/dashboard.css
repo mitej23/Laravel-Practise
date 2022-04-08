@@ -167,3 +167,7 @@ input:focus {
     color: #000;
     cursor: pointer;
 }
+
+.active {
+    background-color: #2196f3;
+}
