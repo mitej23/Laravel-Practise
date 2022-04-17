@@ -1,40 +1,111 @@
+:root{
+    --color-background: #f8f8f8;
+    --color-primary: #00144d;
+    --color-secondary: #2e5598;
+    --color-red: #e44e16;
+    --color-green: #57c84d;
+    --border: 1px solid rgb(214, 214, 214);
+    --box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
 * {
     box-sizing: border-box;
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", sans-serif !important;
+}
+
+body{
+    background-color: var(--color-background);
 }
 
 .admin-dashboard {
     width: 100vw;
     height: 100vh;
+    display: flex;
     background-color: #fff;
 }
 
 .side-bar {
-    width: 20%;
+    width: 17%;
+    min-width: 215px;
+    max-width: 250px;
     height: 100%;
-    background-color: #ccc;
+    background-color: #00144d;
     float: left;
     border-right: 1px solid #ccc;
-    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    display: flex;
+    font-weight: bold;
+    color: #000;
+    text-decoration: none;
+    align-content: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    margin-top: 25%;
+    margin-bottom: 30%;
+    padding-left: 1.25rem;  
+}
+
+.logo-text-container {
+    font-size: 1rem;
+    white-space: nowrap;
+    margin-left: 10px;
+    color: white;
+    font-weight: 800;
+    letter-spacing: 0.1px;
 }
 
 .admin-content {
-    width: 80%;
     height: 100%;
+    flex: 1;
     background-color: #fff;
-    float: right;
     padding: 4rem;
 }
 
 .menu {
     display: flex;
     flex-direction: column;
+    flex: 1;
+    margin-bottom: 1.5rem;
 }
 
-.menu > a {
+.menu > .menu-item {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    padding-left: 3rem;
+    padding-top: 1.125rem;
+    padding-bottom: 1.125rem;   
+}
+
+.menu > .menu-item:last-of-type {
+    margin-top: auto;
+  }
+
+.menu-item:hover{
+    cursor: pointer;
+}
+
+.menu-item:not(.active):hover{
+    background-color: #ffffff0f;
+}
+
+.menu-item:not(.active):last-of-type:hover{
+    background-color: #ff3a3a0f;
+}
+
+.menu-item > a{
     color: white;
     text-decoration: none;
+    font-size: 1.0125rem;
+    margin-left: 1rem;
+    margin-top: 2.5px;
 }
 
 /* posts */
@@ -99,7 +170,7 @@ th {
 
 .btn {
     height: max-content;
-    background-color: #2196f3;
+    background-color: var(--color-secondary);
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 0.5rem;
@@ -169,5 +240,6 @@ input:focus {
 }
 
 .active {
-    background-color: #2196f3;
+    background-color: var(--color-secondary);
+    padding: 10px 15px;
 }

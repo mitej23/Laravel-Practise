@@ -9,7 +9,7 @@
             </div>
         @endif
 
-        <form action="{{route('login')}}" method="post">
+        <form action="{{route('login')}}" method="post" class="auth-form">
             @csrf
             <label for="email">Email</label>
             <input type="email" name="email" id="email" placeholder="Your email" value="{{old('email')}}">

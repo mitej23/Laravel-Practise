@@ -9,9 +9,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\AdminController;
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::get('/', [LoginController::class,'home'])->name('home');
 
 Route::get('/library', [DashboardController::class, 'index'])->name('dashboard');
 
