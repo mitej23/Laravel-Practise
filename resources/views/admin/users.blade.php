@@ -3,7 +3,7 @@
 @section('dashboard-content')
     <div class="admin-content">
         <div class="header-container">
-            <h1>Users List</h1>
+            <h2>Users List</h2>
             <div class="btn-container">
                 <button class="btn" onclick="addUsersUsingFile()">Import</a>
                 <button class="btn" onclick="addUser()">Add</a>

@@ -7,6 +7,17 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{asset('css/dashboard.css')}}">
     <title>Document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </head>
 <body>
     <div class="admin-dashboard">
@@ -19,7 +30,7 @@
                 </div>
             </div>
             <div class="menu">
-                <div class="menu-item {{ Request::routeIs('admin.approval') ? 'active' : '' }}" onclick="location.href='{{route('admin.approval')}}'">
+                <div class="menu-item {{ Request::routeIs('admin.books') ? 'active' : '' }}" onclick="location.href='{{route('admin.books')}}'">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-book" width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                         <path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
@@ -28,7 +39,7 @@
                         <line x1="12" y1="6" x2="12" y2="19" />
                         <line x1="21" y1="6" x2="21" y2="19" />
                       </svg>
-                    <a href="{{route('admin.approval')}}">Books</a>
+                    <a href="{{route('admin.books')}}">Books</a>
                 </div>
                 <div class="menu-item {{ Request::routeIs('admin.users') ? 'active' : '' }}" onclick="location.href='{{route('admin.users')}}'">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-users" width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">

@@ -40,7 +40,7 @@ Route::get('/admin/users/delete/{id}',[AdminController::class,'deleteUser'])->na
 Route::put('/admin/users/{id}',[AdminController::class,'updateUser'])->name('admin.users.update');
 
 Route::get('/admin/qna',[AdminController::class,'qna'])->name('admin.qna');
-Route::get('/admin/approvals',[AdminController::class,'approvals'])->name('admin.approval');
+Route::get('/admin/books',[AdminController::class,'books'])->name('admin.books');
 
 Route::post('/admin/qna/update',[AdminController::class,'updateQuestion'])->name('admin.qna.update');
 Route::get('/admin/qna/delete/{id}',[AdminController::class,'deleteQuestion'])->name('admin.qna.delete');

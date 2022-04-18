@@ -34,7 +34,7 @@
                 <a style="margin-right: 30px">{{auth()->user()->name}}</a>    
                 <form action="{{route('logout')}}" method="post">
                     @csrf
-                    <input id="nav-right-text" type="submit" value="logout"></button>
+                    <input id="nav-right-text" type="submit" value="logout" style="background-color: var(--color-primary)"></button>
                 </form>
             @endauth
 

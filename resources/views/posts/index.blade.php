@@ -4,7 +4,7 @@
 
     <div class="posts-body">
         <div class="posts">
-            <div class="upload-file">
+            <div class="upload-file" >
                 <h2>Add File</h2>
                 @error('file')
                     <div class="error-text">{{ $message }}</div>
@@ -12,17 +12,17 @@
                 <form id="fileUploadForm" method="POST" action="{{route('posts')}}" enctype="multipart/form-data">
                     @csrf
                         <label for="name">File Name:</label>
-                        <input type="text" class="form-control" name="name" id="name" placeholder="name">
+                        <input type="text" class="form-control" name="name" id="name" placeholder="Name">
                         <label for="file">File</label>
-                        <input name="file" type="file" class="form-control"  id="file">
-
+                        <br />
+                        <input name="file" type="file" class="custom-file-input" size="60">
                         <label for="tags">Add Tags:</label>
                         <select class="form-control tags" multiple="multiple" name="tags[]">
                             @foreach ($alltags as $tag)
                             <option>{{$tag->name}}</option>
                             @endforeach
                         </select>
-                        <input id="post-btn" type="submit" value="Submit" class="btn btn-primary">
+                        <input id="post-btn" type="submit" value="Submit" class="btn btn-primary" style="margin-top:30px;margin-bottom:15px;font-size:1.125rem;">
                         <div id="progress-container" style="margin-top:20px;height: 25px;display:none;">
                         <div class="progress" style=" position:relative; width:100%; border: 1px solid #7F98B2; padding: 1px; border-radius: 3px;height:16px;">
                             <div id="progress-bar" style="background-color: #3fcb3f!important;" role="progressbar" style="height:100%;"></div> 
@@ -48,6 +48,7 @@
                     display: "inline-block",
                     maximumSelectionLength: 4
                 });
+                $(".select2-search__field").css("fontSize", "1rem");
 
                 $('#fileUploadForm').ajaxForm({
                     beforeSend: function () {
