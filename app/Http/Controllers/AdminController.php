@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Post;
 use App\Models\Qna;
 use App\Models\User;
+use Clockwork\Storage\Search;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -26,7 +27,7 @@ class AdminController extends Controller
         if(count($answers) == 0){
             return response()->json([
                 'status' => 'success',
-                'answer' => "Sorry, I don't know what you mean."
+                'answer' => "Sorry, I don't know what you are trying to ask"
             ]);  
         }
 
@@ -183,12 +184,61 @@ class AdminController extends Controller
         return redirect()->route('admin.qna')->with('status', 'Questions have been added successfully');
     }
     
-    public function approvals()
+    public function books(Request $request)
     {
-        $posts = Post::where('approval', 'PENDING')->get();
 
-        return view('admin.approvals',[
-            'posts' => $posts
+        $approval = '';
+
+        if($request->approval){
+            $approval = $request->approval;
+        }
+
+        if($request->search && $request->tags) {
+            
+            $posts = Post::withAllTags($request->tags)->where('name', 'like', '%'.$request->search.'%')->paginate(100);
+        
+        } else if($request->search) {
+            
+            $posts = Post::where('name', 'like', '%'.$request->search.'%')->paginate(100);
+        
+        } else if($request->tags) {
+            
+            $posts = Post::withAllTags($request->tags)->paginate(100);
+        
+        } else {
+            
+            $posts = Post::paginate(100);
+        
+        }
+
+        
+        if($approval == 'all'){
+            $posts = Post::paginate(10);
+        }else if($approval == 'approved'){
+            $posts = Post::where('approval','APPROVED')->paginate(10);
+        }else if($approval == 'pending'){
+            $posts = Post::where('approval','PENDING')->paginate(10);
+        }else if($approval == 'rejected'){
+            $posts = Post::where('approval','REJECTED')->paginate(10);
+        }
+        else{
+            $approval = 'all';
+        }
+       
+        // dd($request->all());
+
+
+        //dd($request->search, $request->tags, $posts);
+
+        $alltags = Post::existingTags();
+
+
+        return view('admin.books',[
+            'posts' => $posts,
+            'approval' => $approval,
+            'alltags' => $alltags,
+            'search' => $request->search,
+            'tags' => $request->tags
         ]);
     }
 
@@ -200,7 +250,7 @@ class AdminController extends Controller
 
         $posts = Post::where('approval', 'PENDING')->get();
 
-        return view('admin.approvals',[
+        return view('admin.books',[
             'posts' => $posts
         ]);
     }
@@ -212,7 +262,7 @@ class AdminController extends Controller
 
         $posts = Post::where('approval', 'PENDING')->get();
 
-        return view('admin.approvals',[
+        return view('admin.books',[
             'posts' => $posts
         ]);
         

@@ -1,11 +1,11 @@
 :root{
-    --color-background: #f8f8f8;
+    --color-background: #fdfdfd;
     --color-primary: #00144d;
     --color-secondary: #2e5598;
     --color-red: #e44e16;
     --color-green: #57c84d;
     --border: 1px solid rgb(214, 214, 214);
-    --box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 -2px 4px -2px rgb(0 0 0 / 0.1);
 }
 
 * {
@@ -75,10 +75,11 @@ body{
 .posts-body {
     margin: auto;
     width: 400px;
-    border: 1px solid rgb(214, 214, 214);
     border-radius: 5px;
     padding: 2rem;
     margin-top: 5rem;
+    box-shadow: var(--box-shadow);
+    background: white;
 }
 
 .register,
@@ -113,7 +114,7 @@ label {
     margin-bottom: 0.5rem;
 }
 
-input:not([type="submit"]) {
+input:not([type="submit"],[ type="file"]) {
     width: 100%;
     height: 40px;
     border-radius: 5px;
@@ -148,13 +149,11 @@ button:not(.select2-selection__choice__remove, .select2-selection__clear),
 #post-btn {
     width: 100%;
     height: 40px;
-    margin-top: 30px;
-    margin-bottom: 15px;
     border-radius: 5px;
     border: var(--border);
     background-color: var(--color-secondary);
     color: white;
-    font-size: 1.125rem;
+    font-size: 1.0125rem;
     font-weight: bold;
 }
 
@@ -193,23 +192,19 @@ button:hover {
     align-items: baseline;
 }
 
-.dashboard-add-post {
-    height: 40px;
+.dashboard-btn {
     display: flex;
-    font-size: 1.125rem;
     align-items: center;
-    padding: 5px;
-    border: 1px solid rgb(67, 67, 255);
-    border-radius: 4px;
-    background-color: rgb(67, 67, 255);
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
     margin-left: 15px;
 }
 
-.dashboard-add-post:hover {
+.dashboard-btn:hover {
     cursor: pointer;
 }
 
-.dashboard-add-post > a {
+.dashboard-btn > a {
     display: flex;
     align-items: center;
     padding: 0px 4px;
@@ -237,16 +232,18 @@ button:hover {
     grid-row-gap: 19px;
     justify-items: stretch;
     align-items: stretch;
+    margin-top: 2rem;
 }
 
 .post {
-    padding: 0.75rem;
-    border: 1.5px solid rgb(214, 214, 214);
-    border-radius: 5px;
+    padding: 1.25rem;
+    border-radius: 10px;
     margin-bottom: 1rem;
     display: flex;
     justify-content: space-between;
     flex: 1;
+    background-color: white;
+    box-shadow: var(--box-shadow);
 }
 
 .post-data > div {
@@ -260,11 +257,8 @@ button:hover {
     letter-spacing: 0.25px;
 }
 
-.download-btn > a {
-    text-decoration: none;
-    color: #000;
-    font-size: 1.125rem;
-    margin-left: 30px;
+svg :hover{
+    cursor: pointer;
 }
 
 /* home page */
@@ -309,13 +303,15 @@ button:hover {
 
 .chat-icon {
     height: 60px;
-    width: 60px;
-    border: 1px solid rgb(67 67 255);
+    width: 60px;;
     border-radius: 30px;
     position: fixed;
     right: 50px;
-    bottom: 50px;
-    background: blue;
+    bottom: 30px;
+    background: var(--color-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .chat-icon:hover {
@@ -329,9 +325,10 @@ button:hover {
     height: 400px;
     width: 330px;
     border-radius: 10px;
-    border: 1px solid rgb(199, 199, 199);
-    background: white;
+    box-shadow: var(--box-shadow);
+    background: #fff;
     padding: 0.75rem;
+    padding-bottom: 1rem;
 }
 
 .chatbox-send {
@@ -340,8 +337,8 @@ button:hover {
 }
 
 .chat-close {
-    height: 30px;
-    width: 30px;
+    height: 24px;
+    width: 24px;
     border: 1px solid grey;
     border-radius: 15px;
 }
@@ -374,22 +371,27 @@ button:hover {
     font-weight: 400;
 }
 
-#question {
+#question, #answer {
     margin-top: 10px;
     margin-bottom: 10px;
-    border: 1px solid grey;
-    padding: 5px;
-    border-radius: 2.5px;
+    border: var(--border);
+    padding: 10px;
+    border-radius: 10px;
+    background-color: white;
+}
+
+#question {
     margin-left: 20%;
+    border-top-right-radius: 0px;
+    background-color: var(--color-secondary);
+    color: white;
 }
 
 #answer {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border: 1px solid grey;
-    padding: 5px;
-    border-radius: 2.5px;
     margin-right: 20%;
+    border-top-left-radius: 0px;
+    background-color: #fdfdfd;
+    color: black;
 }
 
 /* tags */
@@ -406,7 +408,7 @@ button:hover {
     margin-right: 5px;
     padding: 5px 10px;
     color: white;
-    background: #bdbdbd;
+    background: var(--color-secondary);
     font-size: 14px;
     border-radius: 11px;
     align-items: center;
@@ -454,6 +456,29 @@ button:hover {
     margin-top: 9px !important;
 }
 
+.select2-container--default .select2-selection--multiple .select2-selection__choice{
+    font-size: 1rem !important;
+    color: white !important;
+    border:none !important;
+    background-color: var(--color-secondary) !important;
+    padding: 5px !important;
+    padding-left: 20px !important;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove{
+    height: 100% !important;
+    color:white !important;
+    border-right:none !important;
+    padding: 0 4px !important;
+}
+
+.select2-container--default .select2-results>.select2-results__options{
+    font-size: 1rem !important;
+}
+
+.select2-results__option{
+    padding: 10px !important;
+}
 
 @media (min-width:840px) and (max-width:1024px) {
     .nav{

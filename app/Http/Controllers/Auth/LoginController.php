@@ -21,7 +21,7 @@ class LoginController extends Controller
         // check if user exists
         if(Auth::check()){
             if(Auth::user()->type == 'ADMIN'){
-                return redirect()->route('admin.users');
+                return redirect()->route('admin.books');
             }
             if(Auth::user()->type == 'STAFF' || Auth::user()->type == 'STUDENT'){
                 return redirect()->route('dashboard');
@@ -43,7 +43,7 @@ class LoginController extends Controller
         }
 
         if(Auth::user()->type == 'ADMIN'){
-            return redirect()->route('admin.users');
+            return redirect()->route('admin.books');
         }
 
         return redirect()->route('dashboard');

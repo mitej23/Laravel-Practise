@@ -17,21 +17,31 @@ class DashboardController extends Controller
     public function index(Request $request)
     {   
 
-        if($request->search || $request->tags) {
-
-            //$posts = Post::where('approval', 'APPROVED')->where('name', 'like', '%'.$request->search.'%')->paginate(100);
-
-            $posts = Post::withAllTags($request->tags)->where('approval', 'APPROVED')->where('name', 'like', '%'.$request->search.'%')->paginate(100);
+        if($request->search && $request->tags) {
             
+            $posts = Post::withAllTags($request->tags)->where('name', 'like', '%'.$request->search.'%')->paginate(100);
+        
+        } else if($request->search) {
+            
+            $posts = Post::where('name', 'like', '%'.$request->search.'%')->paginate(100);
+        
+        } else if($request->tags) {
+            
+            $posts = Post::withAllTags($request->tags)->paginate(100);
+        
         } else {
-            $posts = Post::where('approval', 'APPROVED')->paginate(100);
+            
+            $posts = Post::paginate(100);
+        
         }
 
         
         $alltags = Post::existingTags();
         return view('dashboard',[
             'posts' => $posts,
-            'alltags' => $alltags
+            'alltags' => $alltags,
+            'search' => $request->search,
+            'tags' => $request->tags
         ]);
     }
     public function download($name)
