@@ -4,7 +4,7 @@
     <div class="admin-content">
         <div class="header-container">
             <h2>Question and Answers</h2>
-            <div class="btn-container">
+            <div class="btn-container" style="display: flex">
                 <button class="btn" onclick="addQnAUsingFile()">Import</a>
                 <button class="btn" onclick="addQnA()">Add</a>
             </div>
@@ -23,8 +23,8 @@
                     <td class="answer" contenteditable="false">
                         {{$qna->answer}}
                     </td>
-                    <td>
-                        <button class="btn" onclick="editAns(this,{{$qna->id}})">Edit</button>
+                    <td style="display: flex">
+                        <div class="btn" onclick="editAns(this,{{$qna->id}})">Edit</div>
                         <a class="btn" href="{{route('admin.qna.delete', $qna->id)}}">Delete</a>
                     </td>
                 </tr>
@@ -94,6 +94,7 @@
                 ques.focus();
                 ans.focus();
                 e.innerHTML = 'Save';
+
             }else{
 
                 var question = ques.innerHTML;
@@ -133,8 +134,10 @@
         }
 
         function closeModal(){
-            var modal = document.querySelector('.modal');
-            modal.style.display = 'none';
+            console.log("close modal")
+            var modal = document.getElementsByClassName("modal");
+            modal[0].style.display = "none";
+            modal[1].style.display = "none";
         }
 
         function addQnA(){
@@ -146,6 +149,21 @@
             var modal = document.querySelector('#file-qna-modal');
             modal.style.display = 'block';
         }
+
+        //add event listner to content editable tags
+        document.querySelectorAll(".editable").forEach(e => {
+            e.addEventListener('keydown', function(e){
+                if(e.keyCode === 13 || e.keyCode === 27){
+                    e.preventDefault();
+                    e.target.blur();
+                }
+                if(e.keyCode === 32){
+                    e.preventDefault();
+                    e.stopPropagation();
+                    document.execCommand("insertText", false, ' ');
+                } 
+            });
+        });
 
 
     </script>

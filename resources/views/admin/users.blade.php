@@ -4,7 +4,7 @@
     <div class="admin-content">
         <div class="header-container">
             <h2>Users List</h2>
-            <div class="btn-container">
+            <div class="btn-container" style="display: flex">
                 <button class="btn" onclick="addUsersUsingFile()">Import</a>
                 <button class="btn" onclick="addUser()">Add</a>
             </div>
@@ -23,8 +23,8 @@
                     <td class="editable name" contenteditable="false">{{$user->name}}</td>
                     <td class="editable email" contenteditable="false">{{$user->email}}</td>
                     <td class="editable type" contenteditable="false">{{$user->type}}</td>
-                    <td>
-                        <button class="btn" onclick="editUser(this,{{$user->id}})">Edit</button>
+                    <td style="display: flex">
+                        <div class="btn" onclick="editUser(this,{{$user->id}})">Edit</div>
                         <a class="btn" href="{{route('admin.users.delete', $user->id)}}">Delete</a>
                     </td>
                 </tr>
