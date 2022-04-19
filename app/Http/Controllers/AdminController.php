@@ -248,23 +248,18 @@ class AdminController extends Controller
         $post->approval = 'APPROVED';
         $post->save();
 
-        $posts = Post::where('approval', 'PENDING')->get();
-
-        return view('admin.books',[
-            'posts' => $posts
-        ]);
+        // redirect to admin books route
+        return redirect()->route('admin.books')->with('status', 'Book has been approved successfully');
+        
     }
 
     public function delete($id)
     {
         $post = Post::find($id);
-        $post->delete();
+        $post->approval = 'REJECTED';
+        $post->save();
+   
 
-        $posts = Post::where('approval', 'PENDING')->get();
-
-        return view('admin.books',[
-            'posts' => $posts
-        ]);
-        
+        return redirect()->route('admin.books')->with('status', 'Book has been approved successfully');
     }
 }
