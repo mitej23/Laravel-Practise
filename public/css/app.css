@@ -512,11 +512,37 @@ svg :hover{
 /* phones */
 @media screen and (max-width:480px){
     .nav{
-        padding : 0% 7%;
+        padding : 0% 1.5rem;
+    }
+
+    .home{
+        padding-top: 20vh;
+    }
+
+    #logo{
+        max-height: 50px !important;
+        max-width: 50px !important;
+    }
+
+    .logo-text-container{
+        margin-left: 5px !important;
+    }
+
+    .logo-text-container > p {
+        font-size: 0.8rem !important;
     }
 
     .nav-right > a {
         display: none;
+    }
+
+    #nav-right-text {        
+        font-size: 1rem !important;
+    }
+
+    #headline{
+        font-size: 2.75rem !important;
+        width: 85% !important;
     }
 
     /* auth page */
@@ -537,24 +563,24 @@ svg :hover{
     }
 
     h2{
-        font-size: 1.75rem !important;
+        font-size: 1.5rem !important;
     }
 
-    p:not(.tag > p) {
-        font-size: 1.25rem !important;
+    p:not(.tag > p ,.logo-text-container > p) {
+        font-size: 1rem !important;
     }
 
     label{
-        font-size: 1.125rem !important;
+        font-size: 1rem !important;
     }
 
     input:not([type="submit"],[ type="file"]) {
-        height: 3rem;
-        font-size: 1.125rem;
+        height: 2.5rem;
+        font-size: 1rem;
     }    
 
     #auth-submit-btn{
-        height: 3rem;
+        height: 2.5rem;
         font-size: 1.15rem;
     }
 
@@ -562,29 +588,35 @@ svg :hover{
         margin-bottom: 1rem;
     }
 
+    .chats {
+        height: calc(75vh - 4.25em - 34px);
+    }
+
     .chat-box{
-        height: 50vh;
+        flex-direction: column;
+        height: 75vh;
         width: calc(100vw - 3rem);
+        box-shadow: 0 8px 12px -1px rgb(0 0 0 / 0.1), 0 -4px 8px -4px rgb(0 0 0 / 0.1);
     }
 
     /* add posts page*/
 
     .posts-body{
-        height: 100vh;
+        height: calc(100vh - 90px);
         width: 100%;
         margin: 0;
-        padding: 3rem 1.5rem;
+        padding: 2.5rem 1.5rem;
     }
 
     #post-btn {
-        height: 3rem;
-        font-size: 1.25rem;
+        height: 2.5rem;
+        font-size: 1rem !important;
     }
 
     /* dashboard page */
 
     .dashboard{
-        margin: 3rem 1.5rem;
+        margin: 2rem 1.5rem;
     }
 
     .posts-container{
@@ -601,13 +633,16 @@ svg :hover{
 
     .select2-container--default .select2-selection--multiple {
         padding-left: 5px !important;
-        height: 3rem !important;
-        padding: 0.4rem !important;
+        min-height: 2.5rem !important;
+    }
+
+    .select2-container--default .select2-selection--multiple.select2-selection--clearable {
+        padding-right: 25px !important;
     }
 
     .dashboard-btn{
-        height: 3rem !important;
-        font-size: 1.125rem !important;
+        height: 2.5rem !important;
+        font-size: 1rem !important;
         width: 100% !important;
         justify-content: center;
         margin-left: 0px;
