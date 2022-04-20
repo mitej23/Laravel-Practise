@@ -36,7 +36,7 @@
                 <div class="error-text">{{ $message }}</div>
             @enderror
             <br>
-            <button type="submit" value="Register" style="margin-top:30px;margin-bottom:15px;font-size:1.125rem;">Submit</button>
+            <button type="submit" value="Register" id="auth-submit-btn" style="margin-top:30px;margin-bottom:15px;font-size:1.125rem;">Submit</button>
         </form>
     </div>
 @endsection

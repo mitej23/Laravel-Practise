@@ -54,7 +54,7 @@ body{
 
 .nav-right {
     display: flex;
-    align-items: baseline;
+    align-items: center;
 }
 
 .nav-right > a {
@@ -163,9 +163,9 @@ button:hover {
 
 .error-text {
     color: var(--color-red);
-    font-size: 1rem;
-    margin-top: 5px;
-    margin-bottom: -25px;
+    font-size: 0.8rem;
+    margin-top: 1rem;
+    margin-bottom: -16px;
 }
 
 .dashboard {
@@ -280,7 +280,7 @@ svg :hover{
     border: 1px solid grey;
     display: flex;
     align-items: center;
-    padding: 5px 10px;
+    padding: 10px 15px;
     border-radius: 5px;
     margin: 10px;
 }
@@ -416,6 +416,7 @@ svg :hover{
 
 .select2-container {
     min-width: 125px !important;
+    width: 30% !important;
 }
 
 .select2-container--default .select2-selection--multiple {
@@ -431,9 +432,6 @@ svg :hover{
     padding-left: 5px !important;
 }
 
-.select2-container {
-    font-size: 1.125rem !important;
-}
 
 .select2-container--default.select2-container--focus
     .select2-selection--multiple {
@@ -480,6 +478,12 @@ svg :hover{
     padding: 10px !important;
 }
 
+/* back button */
+
+.back-btn-post:hover {
+    cursor: pointer;
+}
+
 @media (min-width:840px) and (max-width:1024px) {
     .nav{
         padding: 0% 10%;
@@ -506,15 +510,119 @@ svg :hover{
 
 
 /* phones */
-@media (max-width:580px){
+@media screen and (max-width:480px){
     .nav{
         padding : 0% 7%;
     }
-    .dashboard{
-        margin: 7%;
+
+    .nav-right > a {
+        display: none;
     }
+
+    /* auth page */
+
+    .login{
+        margin: 0px;
+    }
+
+    .login,.register{
+        border-radius: 10px;
+        background-color: #fff;
+        height: 100%;
+        margin: 3rem 1.5rem;
+        margin-top: 3rem;
+        box-shadow:none;
+        padding: 0px;
+        width: initial;
+    }
+
+    h2{
+        font-size: 1.75rem !important;
+    }
+
+    p:not(.tag > p) {
+        font-size: 1.25rem !important;
+    }
+
+    label{
+        font-size: 1.125rem !important;
+    }
+
+    input:not([type="submit"],[ type="file"]) {
+        height: 3rem;
+        font-size: 1.125rem;
+    }    
+
+    #auth-submit-btn{
+        height: 3rem;
+        font-size: 1.15rem;
+    }
+
+    .dashboard-search-bar{
+        margin-bottom: 1rem;
+    }
+
+    .chat-box{
+        height: 50vh;
+        width: calc(100vw - 3rem);
+    }
+
+    /* add posts page*/
+
+    .posts-body{
+        height: 100vh;
+        width: 100%;
+        margin: 0;
+        padding: 3rem 1.5rem;
+    }
+
+    #post-btn {
+        height: 3rem;
+        font-size: 1.25rem;
+    }
+
+    /* dashboard page */
+
+    .dashboard{
+        margin: 3rem 1.5rem;
+    }
+
     .posts-container{
         grid-template-columns: 1fr;
+    }
+
+    .searh-filter-container > form{
+        flex-direction: column;
+    }
+
+    .select2-container {
+        width: 100% !important;
+    }
+
+    .select2-container--default .select2-selection--multiple {
+        padding-left: 5px !important;
+        height: 3rem !important;
+        padding: 0.4rem !important;
+    }
+
+    .dashboard-btn{
+        height: 3rem !important;
+        font-size: 1.125rem !important;
+        width: 100% !important;
+        justify-content: center;
+        margin-left: 0px;
+    }
+
+    form > .dashboard-btn{
+        margin-top: 1rem !important;
+    }
+
+    .post{
+        margin-bottom: 0px;
+    }
+
+    .chat-box,.chat-icon{
+        right: 1.5rem;
     }
 } 
 

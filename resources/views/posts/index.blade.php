@@ -5,6 +5,14 @@
     <div class="posts-body">
         <div class="posts">
             <div class="upload-file" >
+                <div class="back-btn-post" onclick="javascript:history.back()" style="display: flex;margin-right: 5px;margin-bottom:1rem;align-items: flex-end;" hover="">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <polyline points="15 6 9 12 15 18" />
+                    </svg>
+                    <p>Back</p>
+                </div>
+
                 <h2>Add File</h2>
                 @error('file')
                     <div class="error-text">{{ $message }}</div>

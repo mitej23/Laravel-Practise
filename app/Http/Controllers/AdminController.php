@@ -31,6 +31,8 @@ class AdminController extends Controller
             ]);  
         }
 
+        //dd($answers[0]->answer);
+
         return response()->json([
             'status' => 'success',
             'answer' => $answers[0]->answer
@@ -45,7 +47,7 @@ class AdminController extends Controller
     public function users()
     {
         // get all users name and email and number of posts
-        $users = User::all('id','name','email','type')->where('type', '!=', 'ADMIN');
+        $users = User::all('id','name','email','password','type')->where('type', '!=', 'ADMIN');
         return view('admin.users',[
             'users' => $users
         ]);
@@ -105,12 +107,23 @@ class AdminController extends Controller
         $email = $request->email;
         $email = str_replace('&nbsp;', '', $email);
         $email = str_replace(' ', '', $email);
+        
+        // check if password is changed else keep the old password
+        if($request->password != $user->password){
+            $user->password = Hash::make($request->password);
+        }
+
         $user->email = $email;
         $user->type = $request->type;
         $user->save();
 
-        return view('admin.users',[
-            'users' => User::all('id','name','email','type')->where('type', '!=', 'ADMIN')
+
+        return response()->json([
+            'status' => 'success',
+            'hashedPassword' => $user->password,
+            'name' => $user->name,
+            'email' => $user->email,
+            'type' => $user->type
         ]);
     }
 
@@ -131,11 +144,21 @@ class AdminController extends Controller
 
     public function updateQuestion(Request $request){
         $qna = Qna::find($request->id);
-        //remove &nbsp
-        $qna->question = str_replace('&nbsp;', '', $request->question);
-        $qna->answer = str_replace('&nbsp;', '', $request->answer);
+        //remove &nbsp, &lt, &gt
+        $answer = str_replace('&nbsp;', '', $request->answer);
+        $answer = str_replace('&lt;', '<', $answer);
+        $answer = str_replace('&gt;', '>', $answer);
+
+        $qna->question = $request->question;
+        $qna->answer = $answer;
+
         $qna->save();
-        return redirect()->route('admin.qna')->with('status', 'Question has been updated successfully');
+        
+        return response()->json([
+            'status' => 'success',
+            'question' => $qna->question,
+            'answer' => $qna->answer
+        ]);
     }
 
     public function deleteQuestion($id)

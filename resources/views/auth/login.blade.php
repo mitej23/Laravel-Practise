@@ -22,7 +22,7 @@
             @error('password')
                 <div class="error-text">{{ $message }}</div>
             @enderror            
-            <button type="submit" value="Login" style="margin-top:30px;margin-bottom:15px;font-size:1.125rem;">Login</button>
+            <button type="submit" id="auth-submit-btn" value="Login" style="margin-top:30px;margin-bottom:15px;font-size:1.125rem;">Login</button>
         </form>
     </div>
 @endsection

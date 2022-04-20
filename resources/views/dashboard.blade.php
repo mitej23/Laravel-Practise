@@ -3,7 +3,7 @@
 @section('content')
     <div class="dashboard">
         <div class="dashboard-title-bar">
-            <p class="dashboard-title">Library</p>
+            <h2 class="dashboard-title">Library</h2>
             <div class="dashboard-features-container">
                 <button class="dashboard-btn" onclick="location.href='{{route('posts')}}'">
                     Add
@@ -122,7 +122,6 @@
                     allowClear: true,
                     placeholder: "Filter by tags",
                     tags: true,
-                    width: '30%',
                     display: "inline-block",
                     maximumSelectionLength: 4
                 });

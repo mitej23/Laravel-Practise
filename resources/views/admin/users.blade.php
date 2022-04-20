@@ -15,6 +15,7 @@
             <tr>
                 <th>Name</th>
                 <th>Email</th>
+                <th>Password</th>
                 <th>Type</th>
                 <th>Action</th>
             </tr>
@@ -22,6 +23,7 @@
                 <tr class="user">
                     <td class="editable name" contenteditable="false">{{$user->name}}</td>
                     <td class="editable email" contenteditable="false">{{$user->email}}</td>
+                    <td class="editable password" contenteditable="false">{{$user->password}}</td>
                     <td class="editable type" contenteditable="false">{{$user->type}}</td>
                     <td style="display: flex">
                         <div class="btn" onclick="editUser(this,{{$user->id}})">Edit</div>
@@ -34,20 +36,20 @@
         <div id="file-users-modal" class="modal">
             <div class="modal-content">
                 <span class="close" onclick="closeModal()" >&#10799;</span>
-                <h2>Import using a csv file</h2>
-                 <p>Format: Name, email-id, password</p>   
+                <h2 style="margin:1rem 0px;">Import using a csv file</h2>
+                 
             </div>
             <div class="modal-body">
                 <form action="{{route('admin.users.importUsingFile')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label class="modal-label" for="file">File</label>
-                        <br />
-                        <input type="file" name="file" class="modal-input" required>
+                        <input type="file" name="file" class="modal-input" required style="margin-bottom:0.5rem">
+                        <p style="font-size:0.9rem;">Note: Format: Name, email-id, password</p> 
                         <br />
                     </div>
                     <div class="form-group">
-                        <button class="btn" type="submit">Import</button>
+                        <button class="btn" type="submit" style="margin:0;">Import</button>
                     </div>
                 </form>
             </div>
@@ -104,15 +106,18 @@
             }
 
             function closeModal(){
-                document.getElementByClassName("modal").style.display = "none";
+                var modal = document.getElementsByClassName("modal");
+                modal[0].style.display = "none";
+                modal[1].style.display = "none";
             }
 
             function editUser(e,id){
                 let nameTag = e.parentNode.parentNode.querySelector(".name");
                 let emailTag = e.parentNode.parentNode.querySelector(".email");
                 let typeTag = e.parentNode.parentNode.querySelector(".type");
+                let passwordTag = e.parentNode.parentNode.querySelector(".password");
 
-                console.log(nameTag, emailTag, typeTag);
+                console.log(nameTag, emailTag, typeTag, passwordTag);
 
                 console.log(nameTag.getAttribute('contenteditable'))
 
@@ -120,6 +125,7 @@
                     nameTag.setAttribute('contenteditable', 'true');
                     emailTag.setAttribute('contenteditable', 'true');
                     typeTag.setAttribute('contenteditable', 'true');
+                    passwordTag.setAttribute('contenteditable', 'true');
 
                     nameTag.focus();
 
@@ -128,10 +134,15 @@
                     let name = nameTag.innerHTML;
                     let email = emailTag.innerHTML;
                     let type = typeTag.innerHTML;
+                    let password = passwordTag.innerHTML;
+
+
+                    console.log(name, email, type, password);
 
                     nameTag.setAttribute('contenteditable', 'false');
                     emailTag.setAttribute('contenteditable', 'false');
                     typeTag.setAttribute('contenteditable', 'false');
+                    passwordTag.setAttribute('contenteditable', 'false');
 
                     e.innerHTML = "Edit";
 
@@ -142,7 +153,8 @@
                         id: id,
                         name: name,
                         email: email,
-                        type: type
+                        type: type,
+                        password: password
                     }
 
                     if(id === null || id === undefined){
@@ -163,6 +175,10 @@
                     })
                     .then(res => res.json())
                     .then(data => {
+                        passwordTag.innerHTML = data.hashedPassword;
+                        nameTag.innerHTML = data.name;
+                        emailTag.innerHTML = data.email;
+                        typeTag.innerHTML = data.type;
                         console.log(data);
                     })
                     .catch(err => console.log(err));

@@ -61,19 +61,20 @@
         <div id="file-qna-modal" class="modal">
             <div class="modal-content">
                 <span class="close" onclick="closeModal()" >&#10799;</span>
-                <h2>Import using a csv file</h2>
-                 <p>Make sure that the first column is for question and second for answer</p>   
+                <h2 style="margin:1rem 0px;">Import using a csv file</h2>
+                  
             </div>
             <div class="modal-body">
                 <form action="{{route('admin.qna.import')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label class="modal-label" for="file">File</label>
+                        <input type="file" name="file" class="modal-input" required style="margin-bottom:0.5rem">
+                        <p style="font-size:0.9rem;">Note: Format question, answer</p> 
                         <br />
-                        <input type="file" name="file" class="modal-input" required>
                     </div>
                     <div class="form-group">
-                        <button class="btn" type="submit">Import</button>
+                        <button class="btn" type="submit" style="margin: 0px;">Import</button>
                     </div>
                 </form>
             </div>
