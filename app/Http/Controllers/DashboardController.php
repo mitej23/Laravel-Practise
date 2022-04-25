@@ -44,8 +44,22 @@ class DashboardController extends Controller
             'tags' => $request->tags
         ]);
     }
+
     public function download($name)
     {   
         return response()->download(storage_path('app/public/files/'.$name));
+    }
+
+    public function pdf($name){
+        // return pdf to the view
+
+        $path = storage_path('app/public/files/'.$name);
+
+        $header = [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; filename="' . $name . '"'
+        ];
+         
+        return response()->file($path, $header);
     }
 }

@@ -77,7 +77,7 @@
                                             "color: #57c84d;" : ($post->approval == "PENDING" ? "color:#b1b03a;" : "color:#cc5a30;")}}">{{ ucfirst(strtolower(trans($post->approval)))}}</p>
                                     </div> 
                                 </div>
-                                <div class="post-title">
+                                <div class="post-title" onclick="location.href='{{route('pdf', basename($post->path))}}'">
                                     <p >{{$post->name}}</>
                                 </div>
                                 <div class="post-date">

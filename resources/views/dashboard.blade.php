@@ -34,8 +34,8 @@
                 @foreach ($posts as $post)
                     <div class="post">
                         <div class="post-data">
-                            <div class="post-title">
-                                <p >{{$post->name}}</>
+                            <div class="post-title" onclick="location.href='{{route('pdf', basename($post->path))}}'" > 
+                                <p >{{$post->name}}</p>
                             </div>
                             <div class="post-date">
                                 <p>Added on: {{$post->created_at->format('d/m/Y')}}</p>

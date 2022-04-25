@@ -50,4 +50,5 @@ Route::post('/admin/qna/import',[AdminController::class,'addQuestionUsingFile'])
 Route::get('/approve/{id}',[AdminController::class,'approve'])->name('admin.approve');
 Route::get('/delete/{id}',[AdminController::class,'delete'])->name('admin.delete');
 
-
+// pdf
+Route::get('/pdf/{name}',[DashboardController::class,'pdf'])->name('pdf');

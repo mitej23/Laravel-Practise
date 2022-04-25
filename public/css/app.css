@@ -257,6 +257,11 @@ button:hover {
     letter-spacing: 0.25px;
 }
 
+.post-title:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 svg :hover{
     cursor: pointer;
 }
