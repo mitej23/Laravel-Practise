@@ -19,19 +19,19 @@ class DashboardController extends Controller
 
         if($request->search && $request->tags) {
             
-            $posts = Post::withAllTags($request->tags)->where('name', 'like', '%'.$request->search.'%')->paginate(100);
+            $posts = Post::withAllTags($request->tags)->where('name', 'like', '%'.$request->search.'%')->where('approval',"APPROVED")->paginate(100);
         
         } else if($request->search) {
             
-            $posts = Post::where('name', 'like', '%'.$request->search.'%')->paginate(100);
+            $posts = Post::where('name', 'like', '%'.$request->search.'%')->where('approval',"APPROVED")->paginate(100);
         
         } else if($request->tags) {
             
-            $posts = Post::withAllTags($request->tags)->paginate(100);
+            $posts = Post::withAllTags($request->tags)->where('approval',"APPROVED")->paginate(100);
         
         } else {
             
-            $posts = Post::paginate(100);
+            $posts = Post::where('approval',"APPROVED")->paginate(100);
         
         }
 
