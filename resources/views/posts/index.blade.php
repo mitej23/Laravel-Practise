@@ -24,12 +24,35 @@
                         <label for="file">File</label>
                         <br />
                         <input name="file" type="file" class="custom-file-input" size="60">
+                        <label for="file_type">File Type</label><br />
+                        <select name="file_type" class="form-control file-type">
+                            <option value="JOURNAL">Journal Paper</option>
+                            <option value="CONFERENCE">Conference Paper</option>
+                            <option value="BOOKREPORT">Book Report</option>
+                            <option value="BOOKCHAPTER">Book Chapter</option>
+                        </select>
+                        <br />
                         <label for="tags">Add Tags:</label>
+                        <br />
                         <select class="form-control tags" multiple="multiple" name="tags[]">
                             @foreach ($alltags as $tag)
                             <option>{{$tag->name}}</option>
                             @endforeach
                         </select>
+                        <br />
+                        <label for="publication">Type of Publication</label>
+                        <br />
+                        <select class="form-control publications" multiple="multiple" name="publications[]">
+                            <option value="Scopus">Scopus</option>
+                            <option value="National">National</option>
+                            <option value="International">International</option>
+                            <option value="Web-of-Science">Web of Science</option>
+                            <option value="Conference-Proceedings">Conference Proceedings</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <br />
+                        <label for="date">Date of Publication</label>
+                        <input type="date" class="form-control" name="publication-date" id="date" min="1950-01-01" max="2030-12-31" placeholder="dd-mm-yyyy">
                         <input id="post-btn" type="submit" value="Submit" class="btn btn-primary" style="margin-top:30px;margin-bottom:15px;font-size:1.125rem;">
                         <div id="progress-container" style="margin-top:20px;height: 25px;display:none;">
                         <div class="progress" style=" position:relative; width:100%; border: 1px solid #7F98B2; padding: 1px; border-radius: 3px;height:16px;">
@@ -56,17 +79,30 @@
                     display: "inline-block",
                     maximumSelectionLength: 4
                 });
+
+                $(".publications").select2({
+                    allowClear: true,
+                    placeholder: "Select a publication",
+                    width: '100%',
+                    display: "inline-block",
+                    maximumSelectionLength: 4
+                });
+
+                $(".file-type").select2({
+                    placeholder: "Select a file type",
+                    width: '100%',
+                    display: "inline-block",
+                    minimumResultsForSearch: Infinity
+                });
+
                 $(".select2-search__field").css("fontSize", "1rem");
 
                 $('#fileUploadForm').ajaxForm({
                     beforeSend: function () {
                         var percentage = '0';
                         $('#progress-container').show();
-                        console.log("beforeSend");
                     },
                     uploadProgress: function (event, position, total, percentComplete) {
-                        console.log("uploadProgress");
-                        console.log(percentComplete);
                         var percentage = percentComplete;
                         $('#progress-bar').width(`${percentComplete}%`);
                         $('#percent').html(`${percentComplete}%`);
@@ -76,11 +112,11 @@
                         $('#progress-bar').width(`0%`);
                         $('#percent').html(`0%`);
                         $('#progress-container').hide();
+                        console.log(xhr.responseText);
                         //get input values
                         //redirect to post page
-                        window.location.href = "{{route('dashboard')}}";
+                       // window.location.href = "{{route('dashboard')}}";
                     }
-
                 });
             });
         });

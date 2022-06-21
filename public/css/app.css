@@ -73,11 +73,10 @@ body{
 }
 
 .posts-body {
-    margin: auto;
+    margin: 5rem auto;
     width: 400px;
     border-radius: 5px;
     padding: 2rem;
-    margin-top: 5rem;
     box-shadow: var(--box-shadow);
     background: white;
 }
@@ -424,7 +423,11 @@ svg :hover{
     width: 30% !important;
 }
 
-.select2-container--default .select2-selection--multiple {
+#fileUploadForm > .select2-container{
+    width: 100% !important;
+}
+
+.select2-container--default .select2-selection--multiple, .select2-container--default .select2-selection--single {
     border: 1px solid rgb(214, 214, 214) !important;
 }
 
@@ -433,13 +436,14 @@ svg :hover{
     padding-left: 5px !important;
 }
 
-.select2-container--default .select2-selection--multiple {
+.select2-container--default .select2-selection--multiple, .select2-container--default .select2-selection--single {
     padding-left: 5px !important;
 }
 
-
 .select2-container--default.select2-container--focus
-    .select2-selection--multiple {
+    .select2-selection--multiple,
+    .select2-container--default.select2-container--focus
+    .select2-selection--single {
     padding-left: 5px !important;
 }
 
@@ -449,7 +453,9 @@ svg :hover{
 }
 
 .select2-container--default.select2-container--focus
-    .select2-selection--multiple {
+    .select2-selection--multiple,
+    .select2-container--default.select2-container--focus
+    .select2-selection--single{
     border: 1px solid rgb(214, 214, 214) !important;
 }
 
@@ -459,7 +465,8 @@ svg :hover{
     margin-top: 9px !important;
 }
 
-.select2-container--default .select2-selection--multiple .select2-selection__choice{
+.select2-container--default .select2-selection--multiple .select2-selection__choice, 
+.select2-container--default .select2-selection--single .select2-selection__choice {
     font-size: 1rem !important;
     color: white !important;
     border:none !important;
@@ -468,7 +475,8 @@ svg :hover{
     padding-left: 20px !important;
 }
 
-.select2-container--default .select2-selection--multiple .select2-selection__choice__remove{
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove,
+.select2-container--default .select2-selection--single .select2-selection__choice__remove {
     height: 100% !important;
     color:white !important;
     border-right:none !important;
@@ -481,6 +489,15 @@ svg :hover{
 
 .select2-results__option{
     padding: 10px !important;
+}
+
+.select2-container .select2-selection--single{
+    height: 2.4rem !important;
+    padding-top: 5px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow{
+    top: 7px !important;
 }
 
 /* back button */
