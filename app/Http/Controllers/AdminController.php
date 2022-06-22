@@ -10,6 +10,9 @@ use App\Models\User;
 use Clockwork\Storage\Search;
 use Illuminate\Support\Facades\Hash;
 
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
 
 class AdminController extends Controller
 {   
@@ -284,5 +287,46 @@ class AdminController extends Controller
    
 
         return redirect()->route('admin.books')->with('status', 'Book has been approved successfully');
+    }
+
+    public function exportBooks(){
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        // write to excel
+
+        // headers
+        $sheet->setCellValue('A1', 'File Name');
+        $sheet->setCellValue('B1', 'User');
+        $sheet->setCellValue('C1', 'File Type');
+        $sheet->setCellValue('D1', 'Publications');
+        $sheet->setCellValue('E1', 'Publication Date');
+        $sheet->setCellValue('F1', 'Paper Link');
+
+        // data
+
+        $books = Post::all();
+        $row = 3;
+        foreach($books as $book){
+            $sheet->setCellValue("A{$row}", $book->name);
+            $sheet->setCellValue("B{$row}", $book->user->name);
+            $sheet->setCellValue("C{$row}", $book->file_type);
+            $sheet->setCellValue("D{$row}", implode(", ",$book->publications));
+            $sheet->setCellValue("E{$row}", $book->publication_date);
+            $sheet->setCellValue("F{$row}", $book->link_to_paper);
+
+            $row = $row + 1;
+        }
+
+        
+
+        $writer = new Xlsx($spreadsheet);
+
+        // redirect output to client browser
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="myfile.xlsx"');
+        header('Cache-Control: max-age=0');
+
+        $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet,'Xlsx');
+        $writer->save('php://output');
     }
 }

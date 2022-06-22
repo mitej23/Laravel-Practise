@@ -43,6 +43,7 @@ Route::put('/admin/users/{id}',[AdminController::class,'updateUser'])->name('adm
 
 Route::get('/admin/qna',[AdminController::class,'qna'])->name('admin.qna');
 Route::get('/admin/books',[AdminController::class,'books'])->name('admin.books');
+Route::get('/admin/books/export',[AdminController::class,'exportBooks'])->name('admin.books.export');
 
 Route::post('/admin/qna/update',[AdminController::class,'updateQuestion'])->name('admin.qna.update');
 Route::get('/admin/qna/delete/{id}',[AdminController::class,'deleteQuestion'])->name('admin.qna.delete');

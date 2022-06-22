@@ -12,6 +12,8 @@
         "laravel/framework": "^8.65",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
+        "maatwebsite/excel": "*",
+        "phpoffice/phpspreadsheet": "dev-NumberFormatMask-Helpers",
         "rtconner/laravel-tagging": "^4.1"
     },
     "require-dev": {

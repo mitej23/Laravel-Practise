@@ -5,6 +5,9 @@
         <div class="dashboard-title-bar">
             <h2>Books</h2>
             <div class="dashboard-features-container">
+                <button class="dashboard-btn" onclick="location.href='{{route('admin.books.export')}}'">
+                    Export
+                </button>
                 <button class="dashboard-btn" onclick="location.href='{{route('posts')}}'">
                     Add
                 </button>
