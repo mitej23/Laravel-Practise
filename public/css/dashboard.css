@@ -36,6 +36,7 @@ body{
     border-right: 1px solid #ccc;
     display: flex;
     flex-direction: column;
+    position: fixed;
 }
 
 .logo {
@@ -66,6 +67,7 @@ body{
     flex: 1;
     background-color: #fff;
     padding: 4rem;
+    margin-left: 235px;
 }
 
 .menu {
@@ -193,6 +195,14 @@ button:hover {
     box-shadow: var(--box-shadow);
 }
 
+.post > div > svg {
+    min-width: 22px;
+}
+
+.post > div > svg:hover{
+    cursor: pointer;
+}
+
 .post-data > div {
     margin-bottom: 5px;
 }
@@ -223,10 +233,17 @@ svg :hover{
     margin-right: 5px;
     padding: 5px 10px;
     color: white;
-    background: var(--color-secondary);
     font-size: 14px;
     border-radius: 11px;
     align-items: center;
+}
+
+.normalTag{
+    background: var(--color-secondary);
+}
+
+.publicationTag{
+    background:#5897fb
 }
 
 .select2-container {

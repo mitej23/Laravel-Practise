@@ -38,16 +38,27 @@
                                 <p >{{$post->name}}</p>
                             </div>
                             <div class="post-date">
-                                <p>Added on: {{$post->created_at->format('d/m/Y')}}</p>
+                                <p>Published on: {{$post->publication_date}}</p>
+                            </div>
+                            <div class="file-type">
+                                <p>File Type: {{$post->file_type}}</p>
+                            </div>
+                            <div class="paper-link">
+                                <p>Paper Link: <a href={{$post->link_to_paper}}>{{$post->link_to_paper}}</a></p>
                             </div>
                             <div class="created_by">
                                 <p>By: {{$post->user->name}}</p>
                             </div>
                             <div class="tag-holder">
                                 @foreach($post->tags as $tag)
-                                    <div class="tag">
+                                    <div class="tag normalTag">
                                         <p>{{ $tag->name }}</p>
                                     </div>     
+                                @endforeach
+                                @foreach($post->publications as $publicationTag)
+                                    <div class="tag publicationTag">
+                                        <p>{{ $publicationTag }}</p>
+                                    </div>
                                 @endforeach
                             </div>
                             

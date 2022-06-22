@@ -19,23 +19,23 @@ class PostController extends Controller
     {  
 
         $alltags = Post::existingTags();
-        // return view('posts.index');
         return view('posts.index', compact('alltags'));
     }
 
     public function store(Request $request)
     {
-
+        // link_to_paper
         $this->validate($request, [
             'name' => 'required|max:255',
-            'file' => 'required|file|mimes:pdf,word',
+            'file' => 'nullable|file|mimes:pdf,word',
             'tags' => 'required|array',
+            'file_type' => 'required|max:255',
+            'publications' => 'required|array',
+            'publication_date' => 'required|date',
+            'link_to_paper' => 'nullable|max:255'
         ]);
 
-
-        // log request data
-        //dd($request->all());
-
+        //dd(request()->all());
 
         $name = time().'.'.request()->file->getClientOriginalExtension();
         $path = request()->file->storeAs('public/files', $name);
@@ -45,8 +45,12 @@ class PostController extends Controller
         $post->name = $name;
         $post->path = $path;
         $post->user_id = Auth::user()->id;
-        
+        $post->file_type = request()->file_type;
+        $post->publications = request()->publications;
+        $post->publication_date = request()->publication_date;
+        $post->link_to_paper = request()->link_to_paper; 
 
+        
         if(Auth::user()->type == 'STUDENT'){
             $post->approval = 'PENDING'; 
         }else{

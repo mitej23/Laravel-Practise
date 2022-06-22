@@ -412,10 +412,17 @@ svg :hover{
     margin-right: 5px;
     padding: 5px 10px;
     color: white;
-    background: var(--color-secondary);
     font-size: 14px;
     border-radius: 11px;
     align-items: center;
+}
+
+.normalTag{
+    background: var(--color-secondary);
+}
+
+.publicationTag{
+    background:#5897fb
 }
 
 .select2-container {

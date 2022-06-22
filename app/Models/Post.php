@@ -10,7 +10,15 @@ class Post extends Model
     use HasFactory;
     use \Conner\Tagging\Taggable;
 
-    protected $fillable = ['name','path','user_id'];
+    protected $fillable = [
+        'name',
+        'path',
+        'user_id',        
+    ];
+
+    protected $casts = [
+        'publications' => 'array'
+    ];
 
     public function user()
     {

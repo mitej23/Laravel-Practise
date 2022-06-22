@@ -81,23 +81,31 @@
                                     <p >{{$post->name}}</>
                                 </div>
                                 <div class="post-date">
-                                    <p>Added on: {{$post->created_at->format('d/m/Y')}}</p>
+                                    <p>Published on: {{$post->publication_date}}</p>
+                                </div>
+                                <div class="file-type">
+                                    <p>File Type: {{$post->file_type}}</p>
+                                </div>
+                                <div class="paper-link">
+                                    <p>Paper Link: <a href={{$post->link_to_paper}}>{{$post->link_to_paper}}</a></p>
                                 </div>
                                 <div class="created_by">
                                     <p>By: {{$post->user->name}}</p>
                                 </div>
                                 <div class="tag-holder">
                                     @foreach($post->tags as $tag)
-                                        <div class="tag">
+                                        <div class="tag normalTag">
                                             <p>{{ $tag->name }}</p>
                                         </div>     
                                     @endforeach
+                                    @foreach($post->publications as $publicationTag)
+                                        <div class="tag publicationTag">
+                                            <p>{{ $publicationTag }}</p>
+                                        </div>
+                                    @endforeach
                                 </div>
-                                {{-- <a href="{{route('download', basename($post->path))}}" >Download</a> --}}
-                                {{-- <a href="{{route('admin.approve', $post->id)}}" >Approve</a>
-                                <a href="{{route('admin.delete', $post->id)}}" >Delete</a> --}}
                             </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-download" width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round"
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-download" width="24" min-width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round"
                                 onclick="location.href='{{route('download', basename($post->path))}}'" >    
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                                 <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />

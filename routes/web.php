@@ -8,8 +8,10 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UpdateController;
 
 Route::get('/', [LoginController::class,'home'])->name('home');
+Route::get('/update',[UpdateController::class,'index']);
 
 Route::get('/library', [DashboardController::class, 'index'])->name('dashboard');
 

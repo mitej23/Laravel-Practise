@@ -26,12 +26,14 @@
                         <input name="file" type="file" class="custom-file-input" size="60">
                         <label for="file_type">File Type</label><br />
                         <select name="file_type" class="form-control file-type">
-                            <option value="JOURNAL">Journal Paper</option>
-                            <option value="CONFERENCE">Conference Paper</option>
-                            <option value="BOOKREPORT">Book Report</option>
-                            <option value="BOOKCHAPTER">Book Chapter</option>
+                            <option value="Journal Paper">Journal Paper</option>
+                            <option value="Conference Paper">Conference Paper</option>
+                            <option value="Book Report">Book Report</option>
+                            <option value="Book Chapter">Book Chapter</option>
                         </select>
                         <br />
+                        <label for="linkpaper">Link to Paper</label><br />
+                        <input type="text" class="form-control" name="link_to_paper" placeholder="Enter Link" /><br />
                         <label for="tags">Add Tags:</label>
                         <br />
                         <select class="form-control tags" multiple="multiple" name="tags[]">
@@ -46,13 +48,13 @@
                             <option value="Scopus">Scopus</option>
                             <option value="National">National</option>
                             <option value="International">International</option>
-                            <option value="Web-of-Science">Web of Science</option>
-                            <option value="Conference-Proceedings">Conference Proceedings</option>
+                            <option value="Web of Science">Web of Science</option>
+                            <option value="Conference Proceedings">Conference Proceedings</option>
                             <option value="Other">Other</option>
                         </select>
                         <br />
                         <label for="date">Date of Publication</label>
-                        <input type="date" class="form-control" name="publication-date" id="date" min="1950-01-01" max="2030-12-31" placeholder="dd-mm-yyyy">
+                        <input type="date" class="form-control" name="publication_date" id="date" min="1950-01-01" max="2030-12-31" placeholder="dd-mm-yyyy">
                         <input id="post-btn" type="submit" value="Submit" class="btn btn-primary" style="margin-top:30px;margin-bottom:15px;font-size:1.125rem;">
                         <div id="progress-container" style="margin-top:20px;height: 25px;display:none;">
                         <div class="progress" style=" position:relative; width:100%; border: 1px solid #7F98B2; padding: 1px; border-radius: 3px;height:16px;">
@@ -115,7 +117,7 @@
                         console.log(xhr.responseText);
                         //get input values
                         //redirect to post page
-                       // window.location.href = "{{route('dashboard')}}";
+                    //    window.location.href = "{{route('dashboard')}}";
                     }
                 });
             });
